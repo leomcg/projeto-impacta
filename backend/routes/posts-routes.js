@@ -35,7 +35,9 @@ router.get("/:pid", (req, res) => {
   });
 
   if (!post) {
-    return res.status(404).json({ message: "Post não encontrado" });
+    const error = new Error("Post não encontrado");
+    error.code = 404;
+    throw error;
   }
 
   res.json({ post });
@@ -48,7 +50,9 @@ router.get("/user/:uid", (req, res) => {
   });
 
   if (!posts || posts.length === 0) {
-    return res.status(404).json({ message: "Usuário não encontrado" });
+    const error = new Error("Usuário não encontrado");
+    error.code = 404;
+    return next(error);
   }
 
   res.json({ posts });
