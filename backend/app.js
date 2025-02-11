@@ -4,6 +4,9 @@ const express = require("express");
 // Importa o body-parser para interpretar corpos de requisições JSON
 const bodyParser = require("body-parser");
 
+// Importa o modelo HttpError, que é usado para criar erros personalizados
+const HttpError = require("./models/http-error");
+
 // Importa as rotas relacionadas aos posts, que estão definidas em outro arquivo
 const postsRoutes = require("./routes/posts-routes");
 
@@ -16,6 +19,12 @@ app.use(bodyParser.json());
 // Define um middleware para lidar com as rotas que começam com "/api/posts"
 // Todas as requisições feitas para essa rota serão tratadas no postsRoutes
 app.use("/api/posts", postsRoutes);
+
+// Middleware para lidar com rotas não encontradas
+app.use((req, res, next) => {
+  const error = new HttpError("Rota não encontrada", 404);
+  throw error;
+});
 
 // Middleware de tratamento de erros
 app.use((error, req, res, next) => {
