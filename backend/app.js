@@ -5,6 +5,7 @@ const bodyParser = require("body-parser");
 const HttpError = require("./models/http-error");
 
 const postsRoutes = require("./routes/posts-routes");
+const usersRoutes = require("./routes/users-routes");
 
 // Cria uma instância do aplicativo Express
 const app = express();
@@ -13,8 +14,9 @@ const app = express();
 app.use(bodyParser.json());
 
 // Define um middleware para lidar com as rotas que começam com "/api/posts"
-// Todas as requisições feitas para essa rota serão tratadas no postsRoutes
 app.use("/api/posts", postsRoutes);
+// Define um middleware para lidar com as rotas que começam com "/api/users"
+app.use("/api/users", usersRoutes);
 
 // Middleware para lidar com rotas não encontradas
 app.use((req, res, next) => {
