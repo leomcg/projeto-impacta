@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const HttpError = require("../models/http-error");
 
 const DUMMY_POSTS = [
   {
@@ -35,9 +36,7 @@ router.get("/:pid", (req, res) => {
   });
 
   if (!post) {
-    const error = new Error("Post não encontrado");
-    error.code = 404;
-    throw error;
+    throw new HttpError("Post não encontrado", 404);
   }
 
   res.json({ post });
@@ -50,9 +49,7 @@ router.get("/user/:uid", (req, res) => {
   });
 
   if (!posts || posts.length === 0) {
-    const error = new Error("Usuário não encontrado");
-    error.code = 404;
-    return next(error);
+    throw new HttpError("Posts não encontrados para o usuário fornecido", 404);
   }
 
   res.json({ posts });
