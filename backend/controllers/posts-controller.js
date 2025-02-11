@@ -1,6 +1,7 @@
 const { v4: uuid } = require("uuid");
 
 const HttpError = require("../models/http-error");
+const { validationResult } = require("express-validator");
 
 let DUMMY_POSTS = [
   {
@@ -64,6 +65,13 @@ const getPostsByUserId = (req, res) => {
 };
 
 const createPost = (req, res) => {
+  const errors = validationResult(req); // Executa a validação dos dados da requisição
+  if (!errors.isEmpty()) {
+    throw new HttpError(
+      "Dados de entrada inválidos fornecidos, por favor, verifique seus dados",
+      422
+    );
+  }
   const { title, description, user } = req.body; // Extrai os dados do corpo da requisição
 
   // Cria um novo post com um ID único gerado dinamicamente
@@ -82,7 +90,14 @@ const createPost = (req, res) => {
 };
 
 const updatePost = (req, res) => {
-  console.log("hello");
+  const errors = validationResult(req); // Executa a validação dos dados da requisição
+  if (!errors.isEmpty()) {
+    throw new HttpError(
+      "Dados de entrada inválidos fornecidos, por favor, verifique seus dados",
+      422
+    );
+  }
+
   const postId = req.params.pid; // Obtém o ID do post a partir dos parâmetros da requisição
   const { title, description } = req.body; // Extrai os dados do corpo da requisição
 
@@ -97,7 +112,14 @@ const updatePost = (req, res) => {
 
 const deletePost = (req, res) => {
   const placeId = req.params.pid; // Obtém o ID do post a partir dos parâmetros da requisição
-  DUMMY_POSTS = DUMMY_POSTS.filter((post) => post.id !== req.params.pid); // Filtra os posts para remover o post com o ID fornecido
+  if (!DUMMY_POSTS.find((post) => post.id === placeId)) {
+    // Verifica se o post com o ID fornecido existe
+    throw new HttpError(
+      "Não foi possível encontrar um post com o ID fornecido",
+      404
+    ); // Se não encontrar, lança um erro 404
+  }
+  DUMMY_POSTS = DUMMY_POSTS.filter((post) => post.id !== placeId); // Filtra os posts para remover o post com o ID fornecido
   res.status(200).json({ message: "Post deletado" }); // Retorna uma mensagem de sucesso
 };
 

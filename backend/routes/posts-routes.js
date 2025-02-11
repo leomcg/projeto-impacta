@@ -1,4 +1,5 @@
 const express = require("express");
+const { check } = require("express-validator");
 
 const {
   getPostById,
@@ -15,9 +16,17 @@ router.get("/:pid", getPostById);
 
 router.get("/user/:uid", getPostsByUserId);
 
-router.post("/", createPost);
+router.post(
+  "/",
+  [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
+  createPost
+);
 
-router.patch("/:pid", updatePost);
+router.patch(
+  "/:pid",
+  [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
+  updatePost
+);
 
 router.delete("/:pid", deletePost);
 

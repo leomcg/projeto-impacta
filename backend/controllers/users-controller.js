@@ -1,4 +1,5 @@
 const { v4: uuid } = require("uuid");
+const { validationResult } = require("express-validator");
 
 const HttpError = require("../models/http-error");
 
@@ -16,6 +17,14 @@ const getUsers = (req, res) => {
 };
 
 const signup = (req, res) => {
+  const errors = validationResult(req); // Executa a validação dos dados da requisição
+  if (!errors.isEmpty()) {
+    throw new HttpError(
+      "Dados de entrada inválidos, verifique seus dados",
+      422
+    );
+  }
+
   const { name, email, password } = req.body; // Obtém os dados do corpo da requisição
 
   // Verifica se o e-mail já está cadastrado
