@@ -1,3 +1,5 @@
+const { v4: uuid } = require("uuid");
+
 const HttpError = require("../models/http-error");
 
 const DUMMY_POSTS = [
@@ -53,5 +55,20 @@ const getPostsByUserId = (req, res) => {
   res.json({ posts });
 };
 
+const createPost = (req, res) => {
+  const { title, description, creator } = req.body;
+  const createdPost = {
+    id: uuid(),
+    title,
+    description,
+    creator,
+  };
+
+  DUMMY_POSTS.push(createdPost);
+
+  res.status(201).json({ post: createdPost });
+};
+
 exports.getPlaceById = getPlaceById;
 exports.getPostsByUserId = getPostsByUserId;
+exports.createPost = createPost;
