@@ -40,7 +40,7 @@ const getPlaceById = (req, res) => {
   res.json({ post });
 };
 
-const getPlaceByUserId = (req, res) => {
+const getPostsByUserId = (req, res) => {
   const userId = req.params.uid;
   const posts = DUMMY_POSTS.filter((post) => {
     return post.creator === userId;
@@ -54,4 +54,4 @@ const getPlaceByUserId = (req, res) => {
 };
 
 exports.getPlaceById = getPlaceById;
-exports.getPlaceByUserId = getPlaceByUserId;
+exports.getPostsByUserId = getPostsByUserId;
