@@ -43,7 +43,7 @@ const signup = (req, res) => {
     password,
   };
 
-  // Adiciona o novo usuário ao array de usuários fictícios
+  // Adiciona o novo usuário ao array de usuários
   DUMMY_USERS.push(createdUser);
 
   // Retorna a resposta com status 201 (criado) e os dados do novo usuário

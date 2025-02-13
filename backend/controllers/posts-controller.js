@@ -33,7 +33,7 @@ let DUMMY_POSTS = [
 const getPostById = (req, res) => {
   const postId = req.params.pid; // Obtém o ID do post a partir dos parâmetros da requisição
 
-  // Procura o post correspondente no array de posts fictícios
+  // Procura o post correspondente no array de posts
   const post = DUMMY_POSTS.find((post) => {
     return post.id === postId;
   });
@@ -82,7 +82,7 @@ const createPost = (req, res) => {
     user,
   };
 
-  // Adiciona o novo post ao array de posts fictícios
+  // Adiciona o novo post ao array de posts
   DUMMY_POSTS.push(createdPost);
 
   // Retorna o post criado com status 201 (Created)
