@@ -1,7 +1,5 @@
 const express = require("express");
 
-const { db } = require("./firebase");
-
 const bodyParser = require("body-parser");
 
 const HttpError = require("./models/http-error");

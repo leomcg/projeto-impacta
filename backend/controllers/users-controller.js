@@ -1,5 +1,6 @@
 const { v4: uuid } = require("uuid");
 const { validationResult } = require("express-validator");
+const { db } = require("../firebase");
 
 const HttpError = require("../models/http-error");
 
@@ -16,7 +17,7 @@ const getUsers = (req, res) => {
   res.json({ users: DUMMY_USERS });
 };
 
-const signup = (req, res) => {
+const signup = async (req, res) => {
   const errors = validationResult(req); // Executa a validação dos dados da requisição
   if (!errors.isEmpty()) {
     throw new HttpError(
@@ -35,19 +36,21 @@ const signup = (req, res) => {
     );
   }
 
-  // Cria um novo usuário com um ID gerado automaticamente
-  const createdUser = {
-    id: uuid(),
+  const newUserId = uuid(); // Gera um ID único para o novo usuário
+
+  // Referência para o documento do novo usuário e criação do documento
+  const userRef = db.collection("users").doc(newUserId);
+
+  // Cria um novo usuário
+  const user = await userRef.set({
+    id: newUserId,
     name,
     email,
     password,
-  };
-
-  // Adiciona o novo usuário ao array de usuários
-  DUMMY_USERS.push(createdUser);
+  });
 
   // Retorna a resposta com status 201 (criado) e os dados do novo usuário
-  res.status(201).json({ user: createdUser });
+  res.status(201).json({ user });
 };
 
 const login = (req, res) => {
