@@ -54,6 +54,7 @@ const signup = async (req, res, next) => {
     name,
     email,
     password,
+    image: "teste",
   };
 
   try {
