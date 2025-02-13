@@ -7,10 +7,13 @@ const {
   createPost,
   updatePost,
   deletePost,
+  getAllPosts,
 } = require("../controllers/posts-controller");
 
 // Cria um roteador do Express para definir as rotas relacionadas a posts
 const router = express.Router();
+
+router.get("/", getAllPosts);
 
 router.get("/:pid", getPostById);
 
