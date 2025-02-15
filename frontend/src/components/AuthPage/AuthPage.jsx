@@ -8,54 +8,84 @@ const AuthPage = () => {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [isSignup, setIsSignup] = useState(false);
   const [error, setError] = useState("");
 
   const handleAuth = async () => {
     try {
-      const endpoint = isSignup ? "/users/signup" : "/users/login";
-      const response = await api.post(endpoint, { email, password });
+      let response = undefined;
+      if (isSignup) {
+        response = await api.post("/users/signup", { email, password, name });
+      } else {
+        response = await api.post("/users/login", { email, password });
+      }
 
       if (response.status === 200 || response.status === 201) {
         if (!isSignup) login();
-        navigate("/posts", { replace: true });
+        navigate("/home", { replace: true });
       }
-    } catch (error) {
-      console.error(error);
-      setError(isSignup ? "Sign-up falhou" : "Login falhou");
+    } catch (err) {
+      console.error(err);
+      if (err.response) {
+        setError(
+          isSignup
+            ? "Sign-up falhou: " + err.response.data.message
+            : "Login falhou: " + err.response.data.message
+        );
+      } else {
+        setError("Erro de rede. Tente novamente.");
+      }
     }
   };
 
   return (
-    <div className="container">
+    <>
       <h1 className="title">Mini Instagram</h1>
-      <h2 className="subtitle">{isSignup ? "Cadastre-se" : "Login"}</h2>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      <input
-        className="input"
-        type="email"
-        placeholder="Email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-      />
-      <input
-        className="input"
-        type="password"
-        placeholder="Senha"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button className="button" onClick={handleAuth}>
-        {isSignup ? "Cadaste-se" : "Login"}
-      </button>
-      <p className="text">
-        {isSignup ? "Já tem uma conta?" : "Não tem uma conta?"}{" "}
-        <button className="link-button" onClick={() => setIsSignup(!isSignup)}>
-          {isSignup ? "Login" : "Cadastre-se"}
+      <div className="container">
+        <h2 className="subtitle">{isSignup ? "Cadastre-se" : "Login"}</h2>
+
+        {error && <p style={{ color: "red" }}>{error}</p>}
+
+        {isSignup && (
+          <input
+            className="input"
+            type="text"
+            placeholder="Nome"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        )}
+
+        <input
+          className="input"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+        <input
+          className="input"
+          type="password"
+          placeholder="Senha"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <button className="button" onClick={handleAuth}>
+          {isSignup ? "Cadaste-se" : "Login"}
         </button>
-      </p>
-    </div>
+        <p className="text">
+          {isSignup ? "Já tem uma conta?" : "Não tem uma conta?"}{" "}
+          <button
+            className="link-button"
+            onClick={() => setIsSignup(!isSignup)}
+          >
+            {isSignup ? "Login" : "Cadastre-se"}
+          </button>
+        </p>
+      </div>
+    </>
   );
 };
 
