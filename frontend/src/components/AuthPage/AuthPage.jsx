@@ -23,17 +23,13 @@ const AuthPage = () => {
       }
 
       if (response.status === 200 || response.status === 201) {
-        if (!isSignup) login();
+        login();
         navigate("/home", { replace: true });
       }
     } catch (err) {
       console.error(err);
       if (err.response) {
-        setError(
-          isSignup
-            ? "Sign-up falhou: " + err.response.data.message
-            : "Login falhou: " + err.response.data.message
-        );
+        setError(err.response.data.message);
       } else {
         setError("Erro de rede. Tente novamente.");
       }
@@ -52,7 +48,7 @@ const AuthPage = () => {
           <input
             className="input"
             type="text"
-            placeholder="Nome"
+            placeholder="Nome*"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
@@ -61,14 +57,14 @@ const AuthPage = () => {
         <input
           className="input"
           type="email"
-          placeholder="Email"
+          placeholder="Email*"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className="input"
           type="password"
-          placeholder="Senha"
+          placeholder="Senha (mínimo 6 caracteres)*"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
