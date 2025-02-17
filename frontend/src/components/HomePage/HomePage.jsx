@@ -15,9 +15,11 @@ const HomePage = () => {
   return (
     <>
       <h1 className="title">Mini Instagram</h1>
-      <div className="container" style={{ width: "80vw" }}>
-        <div className="home-container">
+      <div className="home-container">
+        <div className="user-list-container container">
           <UserList className="user-list-container" users={users} />
+        </div>
+        <div className="post-list-container container">
           <PostList posts={posts} />
         </div>
       </div>

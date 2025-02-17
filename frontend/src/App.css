@@ -1,3 +1,7 @@
+#root {
+  min-height: 100vh;
+  min-width: 100vw;
+}
 body {
   background-color: #f0f8ff; /* Light blue background */
   font-family: Arial, sans-serif;
@@ -6,6 +10,16 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  li {
+    margin: 10px;
+    border: 1px solid black;
+  }
 }
 
 .container {
@@ -17,6 +31,7 @@ body {
   width: 400px;
   height: 80%;
   margin: auto;
+  height: 100%;
 }
 
 .title {
@@ -78,16 +93,24 @@ body {
 
 .home-container {
   display: flex;
+  border: 1px solid magenta;
+  width: 80vw;
+  justify-content: space-between;
+  margin: auto;
 }
 
 .user-list-container {
   width: 30%;
   margin-right: 20px;
+  border: 1px solid lime;
+  overflow: auto;
 }
 
 .post-list-container {
   width: 70%;
   overflow-y: auto;
+  border: 1px solid cyan;
+  overflow: auto;
 }
 
 h1 {
