@@ -3,6 +3,7 @@ import UserList from "../UserList/UserList.jsx";
 import Header from "../Header/Header.jsx";
 import PostList from "../PostList/PostList.jsx";
 import api from "../../api/api";
+import "./HomePage.css";
 
 const HomePage = () => {
   const [users, setUsers] = useState([]);
@@ -16,7 +17,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <>
+    <div className="general-container">
       <Header user={user} />
       <div className="home-container">
         <div className="user-list-container container">
@@ -26,7 +27,7 @@ const HomePage = () => {
           <PostList posts={posts} />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

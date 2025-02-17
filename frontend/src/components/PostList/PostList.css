@@ -9,11 +9,16 @@
   }
 }
 
+.post-card:first-child {
+  margin-top: 0;
+}
+
 .post-image {
   margin: auto;
   width: 70%;
   height: 350px;
-  border: 1px solid orangered;
+  border: 1px solid #0077cc;
+  border-radius: 10px;
 }
 
 .created {

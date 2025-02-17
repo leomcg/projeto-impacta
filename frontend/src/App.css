@@ -22,7 +22,7 @@ ul {
   background: white;
   padding: 30px;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   text-align: center;
   width: 400px;
   height: 80%;
@@ -96,16 +96,16 @@ ul {
 
 .user-list-container {
   width: 30%;
-  margin-right: 20px;
+  margin-right: 40px;
   overflow: auto;
-  height: 75vh;
+  height: calc(75vh);
 }
 
 .post-list-container {
   width: 70%;
   overflow-y: auto;
   overflow: auto;
-  height: 75vh;
+  height: calc(75vh);
   margin: 0;
 }
 
