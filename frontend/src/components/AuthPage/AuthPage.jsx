@@ -64,7 +64,7 @@ const AuthPage = () => {
         <input
           className="input"
           type="password"
-          placeholder="Senha (mínimo 6 caracteres)*"
+          placeholder="Senha (mínimo 5 caracteres)*"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />

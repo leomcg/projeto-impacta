@@ -1,7 +1,3 @@
-#root {
-  min-height: 100vh;
-  min-width: 100vw;
-}
 body {
   background-color: #f0f8ff; /* Light blue background */
   font-family: Arial, sans-serif;
@@ -93,7 +89,6 @@ ul {
 
 .home-container {
   display: flex;
-  border: 1px solid magenta;
   width: 80vw;
   justify-content: space-between;
   margin: auto;
@@ -102,15 +97,16 @@ ul {
 .user-list-container {
   width: 30%;
   margin-right: 20px;
-  border: 1px solid lime;
   overflow: auto;
+  height: 75vh;
 }
 
 .post-list-container {
   width: 70%;
   overflow-y: auto;
-  border: 1px solid cyan;
   overflow: auto;
+  height: 75vh;
+  margin: 0;
 }
 
 h1 {

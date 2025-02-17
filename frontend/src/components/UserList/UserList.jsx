@@ -8,7 +8,11 @@ const UserList = ({ users }) => (
       <ul className="text">
         {users.map((user) => (
           <li key={user.id} className="user-card">
-            <img src="../../assets/images/user-icon.png" alt={user.name} />
+            <img
+              className="user-img"
+              src="../../assets/avatar.png"
+              alt={user.name}
+            />
             <span>{user.name}</span>
           </li>
         ))}
