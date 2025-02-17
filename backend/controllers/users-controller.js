@@ -84,7 +84,7 @@ const login = async (req, res, next) => {
       return next(new HttpError("Credenciais inválidas, login falhou.", 401));
     }
 
-    res.json({ message: "Login bem-sucedido!" });
+    res.json({ message: "Login bem-sucedido!", user });
   } catch (err) {
     console.error(err);
     return next(new HttpError("Erro ao realizar login, tente novamente", 500));

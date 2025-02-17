@@ -23,7 +23,7 @@ const AuthPage = () => {
       }
 
       if (response.status === 200 || response.status === 201) {
-        login();
+        login(response.data.user.name);
         navigate("/home", { replace: true });
       }
     } catch (err) {

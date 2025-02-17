@@ -13,7 +13,6 @@ import "./App.css";
 
 const PrivateRoute = ({ children }) => {
   const { isAuthenticated } = useContext(AuthContext);
-  console.log("isAuthenticated: ", isAuthenticated);
   return isAuthenticated ? children : <Navigate to="/auth" />;
 };
 
