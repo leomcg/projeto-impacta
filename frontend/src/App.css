@@ -1,5 +1,5 @@
 body {
-  background-color: #f0f8ff; /* Light blue background */
+  background-color: #f0f8ff;
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -14,8 +14,12 @@ ul {
   padding: 0;
   li {
     margin: 10px;
-    border: 1px solid black;
+    border: 1px solid rgb(164, 164, 164);
   }
+}
+
+.card {
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .container {
@@ -31,12 +35,12 @@ ul {
 }
 
 .title {
-  color: #0077cc; /* Deep blue */
+  color: #0077cc;
   margin-bottom: 40px;
 }
 
 .subtitle {
-  color: #004b8d; /* Slightly darker blue */
+  color: #004b8d;
   margin-bottom: 20px;
   text-align: center;
   margin-top: 0;

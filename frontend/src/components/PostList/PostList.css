@@ -1,11 +1,11 @@
 .post-card {
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
-  border: 1px solid black;
   margin: 30px 0;
   h3 {
     margin: 0;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    text-align: left;
   }
 }
 
@@ -19,8 +19,12 @@
   height: 350px;
   border: 1px solid #0077cc;
   border-radius: 10px;
+  margin-bottom: 15px;
 }
 
 .created {
+  margin: 0;
+  margin-top: 15px;
   color: grey;
+  text-align: end;
 }
