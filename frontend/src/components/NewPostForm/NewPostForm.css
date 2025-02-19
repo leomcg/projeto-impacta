@@ -1,0 +1,35 @@
+.new-post-form {
+  margin: 20px auto;
+  padding: 15px;
+  width: 50%;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.new-post-form h2 {
+  text-align: center;
+}
+
+.new-post-form input,
+.new-post-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.new-post-form button {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.new-post-form button:hover {
+  background: #0056b3;
+}
