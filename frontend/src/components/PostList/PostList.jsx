@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import "./PostList.css";
+import postImage from "../../assets/post.png";
 const PostList = ({ posts }) => (
   <>
     <h2 className="subtitle">Posts</h2>
@@ -8,7 +9,7 @@ const PostList = ({ posts }) => (
         <li key={post.id} className="post-card card">
           <h3>{post.title}</h3>
           <div className="post-image">
-            <img src="../../assets/avatar.png" alt={post.image} />
+            <img src={postImage} alt={post.image} />
           </div>
           <p>{post.description}</p>
           <p className="created">
