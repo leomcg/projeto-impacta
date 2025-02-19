@@ -2,10 +2,7 @@ const { v4: uuid } = require("uuid");
 const { validationResult } = require("express-validator");
 const HttpError = require("../models/http-error");
 const { db } = require("../firebase");
-<<<<<<< HEAD
 const createDate = require("../utils/date");
-=======
->>>>>>> 138f09e8f39a974bee6d50d4655724fec1470e3b
 const { Timestamp } = require("firebase-admin/firestore");
 
 const validateRequest = (req, next) => {
@@ -111,10 +108,7 @@ const createPost = async (req, res, next) => {
     image: "teste",
     user,
     created: Timestamp.now(),
-<<<<<<< HEAD
     createdString: `Criado em ${createDate()}`,
-=======
->>>>>>> 138f09e8f39a974bee6d50d4655724fec1470e3b
   };
 
   try {
@@ -148,10 +142,7 @@ const updatePost = async (req, res, next) => {
       title,
       description,
       updatedAt: Timestamp.now(),
-<<<<<<< HEAD
       createdString: `Editado em ${createDate()}`,
-=======
->>>>>>> 138f09e8f39a974bee6d50d4655724fec1470e3b
     });
 
     res.status(200).json({ post: { id: doc.id, title, description } });
