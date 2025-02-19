@@ -7,6 +7,10 @@
     margin-bottom: 20px;
     text-align: left;
   }
+  background-color: #feda77;
+}
+.card {
+  background-color: #515bd4;
 }
 
 .post-card:first-child {
@@ -17,7 +21,7 @@
   margin: auto;
   width: 70%;
   height: 350px;
-  border: 1px solid #0077cc;
+  border: 1px solid #050d64;
   border-radius: 10px;
   margin-bottom: 15px;
 }

@@ -4,7 +4,7 @@
   align-items: center;
   padding: 1rem 2rem;
   background-color: #bccdde;
-  border-bottom: 1px solid #0077cc;
+  border-bottom: 1px solid #515bd4;
   width: 100vw;
   margin-bottom: 40px;
   height: 50px;
@@ -15,7 +15,11 @@
 
 .logout {
   margin-right: 20px !important;
-  background-color: tomato !important;
+  background-color: rgba(221, 42, 123, 1) !important;
+}
+
+.new-post {
+  background-color: rgba(81, 91, 212, 1) !important;
 }
 
 .buttons {

@@ -1,5 +1,11 @@
 body {
-  background-color: #f0f8ff;
+  background: rgb(245, 133, 41);
+  background: linear-gradient(
+    90deg,
+    rgba(245, 133, 41, 1) 0%,
+    rgba(221, 42, 123, 1) 62%,
+    rgba(81, 91, 212, 1) 100%
+  );
   font-family: Arial, sans-serif;
   display: flex;
   justify-content: center;
@@ -23,7 +29,8 @@ ul {
 }
 
 .container {
-  background: white;
+  background: #feda77;
+
   padding: 30px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
@@ -35,7 +42,7 @@ ul {
 }
 
 .title {
-  color: #0077cc;
+  color: #515bd4;
   margin-bottom: 40px;
 }
 
@@ -50,13 +57,13 @@ ul {
   width: calc(100% - 20px);
   padding: 10px;
   margin: 10px 0;
-  border: 1px solid #0077cc;
+  border: 1px solid #515bd4;
   border-radius: 5px;
   outline: none;
 }
 
 .button {
-  background-color: #0077cc;
+  background-color: #515bd4;
   color: white;
   border: none;
   padding: 10px;
@@ -81,7 +88,7 @@ ul {
 .link-button {
   background: none;
   border: none;
-  color: #0077cc;
+  color: #515bd4;
   cursor: pointer;
   font-size: 14px;
   outline: none !important;
