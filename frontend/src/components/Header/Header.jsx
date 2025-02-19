@@ -8,8 +8,6 @@ const Header = ({ user, onPostCreated }) => {
   const { logout } = useContext(AuthContext);
   const [showModal, setShowModal] = useState(false);
 
-  const closeModal = () => setShowModal(false);
-
   return (
     <div className="header">
       <div className="buttons">
@@ -26,10 +24,18 @@ const Header = ({ user, onPostCreated }) => {
       </p>
 
       {showModal && (
-        <div className="modal-overlay" onClick={closeModal}>
+        <div className="modal-overlay" onClick={() => setShowModal(false)}>
           <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <NewPostForm onPostCreated={onPostCreated} />
-            <button className="close-button" onClick={closeModal}>
+            <NewPostForm
+              onPostCreated={(newPost) => {
+                onPostCreated(newPost);
+                setShowModal(false);
+              }}
+            />
+            <button
+              className="close-button"
+              onClick={() => setShowModal(false)}
+            >
               ✖
             </button>
           </div>

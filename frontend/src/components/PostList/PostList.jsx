@@ -12,7 +12,7 @@ const PostList = ({ posts }) => (
           </div>
           <p>{post.description}</p>
           <p className="created">
-            {post.created} <b>por {post.user}</b>
+            {post.createdString} <b>por {post.user}</b>
           </p>
         </li>
       ))}

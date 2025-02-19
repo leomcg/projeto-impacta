@@ -17,7 +17,7 @@ const HomePage = () => {
   }, []);
 
   const handlePostCreated = (newPost) => {
-    setPosts((prevPosts) => [newPost, ...prevPosts]); // Add new post to UI
+    setPosts((prevPosts) => [newPost, ...prevPosts]);
   };
 
   return (
@@ -25,7 +25,7 @@ const HomePage = () => {
       <Header user={user} onPostCreated={handlePostCreated} />
       <div className="home-container">
         <div className="user-list-container container">
-          <UserList className="user-list-container" users={users} />
+          <UserList users={users} />
         </div>
         <div className="post-list-container container">
           <PostList posts={posts} />
