@@ -2,14 +2,14 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
   background-color: #515bd4;
 }
 
 .user-img {
-  width: 40px;
-  height: 40px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   border: 1px solid #050d64;
 }

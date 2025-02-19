@@ -25,7 +25,10 @@ const Header = ({ user, onPostCreated }) => {
 
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+          <div
+            className="modal-content container"
+            onClick={(e) => e.stopPropagation()}
+          >
             <NewPostForm
               onPostCreated={(newPost) => {
                 onPostCreated(newPost);

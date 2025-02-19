@@ -9,11 +9,12 @@ const NewPostForm = ({ onPostCreated }) => {
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
   const user = localStorage.getItem("userName");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || description.length < 5) {
+    if (!title || description.length < 5 || !imageUrl) {
       alert(
         "Título é obrigatório e a descrição deve ter pelo menos 5 caracteres."
       );
@@ -21,7 +22,12 @@ const NewPostForm = ({ onPostCreated }) => {
     }
 
     try {
-      const response = await api.post("/posts", { title, description, user });
+      const response = await api.post("/posts", {
+        title,
+        description,
+        user,
+        image: imageUrl,
+      });
       const newPost = response.data.post; // Get the new post from response
 
       setTitle("");
@@ -36,23 +42,34 @@ const NewPostForm = ({ onPostCreated }) => {
   };
 
   return (
-    <div className="new-post-form">
-      <h2>Criar Novo Post</h2>
+    <>
+      <h2 className="subtitle">Criar Novo Post</h2>
       <form onSubmit={handleSubmit}>
         <input
+          className="input"
           type="text"
-          placeholder="Título"
+          placeholder="Título*"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
+        <input
+          className="input"
+          type="text"
+          placeholder="URL da imagem*"
+          value={imageUrl}
+          onChange={(e) => setImageUrl(e.target.value)}
+        />
         <textarea
-          placeholder="Descrição"
+          className="input"
+          placeholder="Descrição*"
           value={description}
           onChange={(e) => setDescription(e.target.value)}
         />
-        <button type="submit">Criar Post</button>
+        <button className="button" type="submit">
+          Criar Post
+        </button>
       </form>
-    </div>
+    </>
   );
 };
 

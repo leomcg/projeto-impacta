@@ -1,5 +1,5 @@
 .post-card {
-  padding: 20px;
+  padding: 30px;
   border-radius: 10px;
   margin: 30px 0;
   h3 {
@@ -8,6 +8,7 @@
     text-align: left;
   }
   background-color: #feda77;
+  /* Target the scrollbar */
 }
 .card {
   background: rgb(129, 52, 175);
@@ -24,7 +25,7 @@
 
 .post-image {
   margin: auto;
-  height: 350px;
+  height: 450px;
   border-radius: 10px;
   margin-bottom: 15px;
   img {

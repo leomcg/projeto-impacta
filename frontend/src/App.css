@@ -28,6 +28,54 @@ ul {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
+.container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.container::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.container::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
+.container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+  transition: background 0.3s ease;
+}
+
+.container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+.container::-webkit-scrollbar-corner {
+  background: #f1f1f1;
+}
+
 .container {
   background: rgb(254, 218, 119);
   background: radial-gradient(
