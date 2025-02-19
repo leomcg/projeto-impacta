@@ -1,12 +1,15 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import api from "../../api/api";
-import "./NewPostForm.jsx";
+import "./NewPostForm.css";
+import { useNavigate } from "react-router-dom";
 
 const NewPostForm = ({ onPostCreated }) => {
+  const navigate = useNavigate();
+
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const user = localStorage.getItem("userId"); // Pegando ID do usuário logado
+  const user = localStorage.getItem("userName");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -19,9 +22,13 @@ const NewPostForm = ({ onPostCreated }) => {
 
     try {
       const response = await api.post("/posts", { title, description, user });
-      onPostCreated(response.data.post);
+      const newPost = response.data.post; // Get the new post from response
+
       setTitle("");
       setDescription("");
+
+      onPostCreated(newPost); // Update home page with the new post
+      navigate("/home", { replace: true });
     } catch (error) {
       console.error("Erro ao criar post:", error);
       alert("Erro ao criar post, tente novamente.");
