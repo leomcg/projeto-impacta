@@ -1,2 +1,2 @@
-para rodar: npm start
-instruções para conectar com o banco no PDF
+- Para rodar: npm start
+- Instruções para conectar com o banco: Baixar arquivo creds.json (link no email e PDF do grupo, acesso somente com email da faculdade) e colocar na raiz do projeto backend 

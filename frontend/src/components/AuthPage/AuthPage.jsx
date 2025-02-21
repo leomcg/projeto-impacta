@@ -42,7 +42,7 @@ const AuthPage = () => {
       <div className="container">
         <h2 className="subtitle">{isSignup ? "Cadastre-se" : "Login"}</h2>
 
-        {error && <p style={{ color: "red" }}>{error}</p>}
+        {error && <p style={{ color: "tomato" }}>{error}</p>}
 
         {isSignup && (
           <input
