@@ -19,9 +19,9 @@ const Header = ({ user, onPostCreated }) => {
         </button>
       </div>
       <h1 className="title">Mini Instagram</h1>
-      <p className="text">
+      <h3>
         Olá, <b>{user}</b>!
-      </p>
+      </h3>
 
       {showModal && (
         <div className="modal-overlay" onClick={() => setShowModal(false)}>
