@@ -11,7 +11,7 @@ const Header = ({ user, onPostCreated }) => {
   return (
     <div className="header">
       <div className="buttons">
-        <button className="button logout" onClick={logout}>
+        <button className="secondary-button button mr-1" onClick={logout}>
           Logout
         </button>
         <button className="button login" onClick={() => setShowModal(true)}>
