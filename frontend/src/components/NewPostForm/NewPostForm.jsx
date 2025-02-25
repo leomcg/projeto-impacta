@@ -11,10 +11,11 @@ const NewPostForm = ({ onPostCreated }) => {
   const [description, setDescription] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const user = localStorage.getItem("userName");
+  const userId = localStorage.getItem("userId");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!title || description.length < 5 || !imageUrl) {
+    if (!title || description.length < 5) {
       alert(
         "Título é obrigatório e a descrição deve ter pelo menos 5 caracteres."
       );
@@ -27,6 +28,7 @@ const NewPostForm = ({ onPostCreated }) => {
         description,
         user,
         image: imageUrl,
+        userId,
       });
       const newPost = response.data.post; // Get the new post from response
 
@@ -55,7 +57,7 @@ const NewPostForm = ({ onPostCreated }) => {
         <input
           className="input"
           type="text"
-          placeholder="URL da imagem*"
+          placeholder="URL da imagem"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />

@@ -12,9 +12,10 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("isAuthenticated", isAuthenticated);
   }, [isAuthenticated]);
 
-  const login = (user) => {
+  const login = (user, id) => {
     setIsAuthenticated(true);
     localStorage.setItem("userName", user);
+    localStorage.setItem("userId", id);
   };
   const logout = () => {
     setIsAuthenticated(false);

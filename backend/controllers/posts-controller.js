@@ -73,7 +73,7 @@ const getPostsByUserId = async (req, res, next) => {
   try {
     const snapshot = await db
       .collection("posts")
-      .where("user", "==", userId)
+      .where("userId", "==", userId)
       .orderBy("created", "desc")
       .get();
 
@@ -97,7 +97,7 @@ const getPostsByUserId = async (req, res, next) => {
 const createPost = async (req, res, next) => {
   if (validateRequest(req, next)) return;
 
-  const { title, description, user } = req.body;
+  const { title, description, user, userId, image } = req.body;
   const newPostId = uuid();
   const postRef = db.collection("posts").doc(newPostId);
 
@@ -105,10 +105,11 @@ const createPost = async (req, res, next) => {
     id: newPostId,
     title,
     description,
-    image: "teste",
+    image,
     user,
     created: Timestamp.now(),
     createdString: `Criado em ${createDate()}`,
+    userId,
   };
 
   try {
