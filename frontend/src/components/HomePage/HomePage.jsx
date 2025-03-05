@@ -21,11 +21,23 @@ const HomePage = () => {
     setPosts((prevPosts) => [newPost, ...prevPosts]);
   };
 
+  const handlePostDeleted = (postId) => {
+    setPosts((prevPosts) => prevPosts.filter((post) => post.id !== postId));
+  };
+
   const handleUserClick = (userId, userName) => {
-    api.get(`/posts/user/${userId}`).then((res) => {
-      setPosts(res.data.posts);
-      setSelectedUser(userName);
-    });
+    api
+      .get(`/posts/user/${userId}`)
+      .then((res) => {
+        setPosts(res.data.posts);
+        setSelectedUser(userName);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 404) {
+          setPosts([]);
+          setSelectedUser(userName);
+        }
+      });
   };
 
   const handleBackToAllPosts = () => {
@@ -41,15 +53,22 @@ const HomePage = () => {
           <UserList users={users} onUserClick={handleUserClick} />
         </div>
         <div className="post-list-container container">
+          <h2 className="subtitle">
+            {selectedUser
+              ? posts.length > 0
+                ? `Posts de ${selectedUser}`
+                : `${selectedUser} ainda não possui posts`
+              : "Posts"}
+          </h2>
           {selectedUser && (
-            <button className="back-button" onClick={handleBackToAllPosts}>
+            <button
+              className="button back-button"
+              onClick={handleBackToAllPosts}
+            >
               Voltar para todos os posts
             </button>
           )}
-          <h2 className="subtitle">
-            {selectedUser ? `Posts de ${selectedUser}` : "Posts"}
-          </h2>
-          <PostList posts={posts} />
+          <PostList posts={posts} onPostDeleted={handlePostDeleted} />
         </div>
       </div>
     </div>
