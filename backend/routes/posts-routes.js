@@ -10,7 +10,6 @@ const {
   getAllPosts,
 } = require("../controllers/posts-controller");
 
-// Cria um roteador do Express para definir as rotas relacionadas a posts
 const router = express.Router();
 
 router.get("/", getAllPosts);
@@ -33,5 +32,4 @@ router.patch(
 
 router.delete("/:pid", deletePost);
 
-// Exporta o roteador para ser usado em outras partes da aplicação
 module.exports = router;

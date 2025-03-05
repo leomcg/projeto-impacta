@@ -1,9 +1,8 @@
 const { v4: uuid } = require("uuid");
 const { validationResult } = require("express-validator");
-const { db } = require("../firebase"); // Assuming Firebase connection is set in this file
+const { db } = require("../firebase");
 const HttpError = require("../models/http-error");
 
-// Get all users from Firestore
 const getUsers = async (req, res, next) => {
   try {
     const snapshot = await db.collection("users").get();
@@ -20,7 +19,6 @@ const getUsers = async (req, res, next) => {
   }
 };
 
-// Sign up a new user
 const signup = async (req, res, next) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -31,7 +29,6 @@ const signup = async (req, res, next) => {
 
   const { name, email, password } = req.body;
 
-  // Check if the email already exists
   const existingUserSnapshot = await db
     .collection("users")
     .where("email", "==", email)
@@ -68,7 +65,6 @@ const signup = async (req, res, next) => {
   }
 };
 
-// Login a user
 const login = async (req, res, next) => {
   const { email, password } = req.body;
 

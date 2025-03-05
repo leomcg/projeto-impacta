@@ -6,7 +6,7 @@ createDate = () => {
     year: "numeric",
     hour: "2-digit",
     minute: "2-digit",
-    hour12: false, // Para manter no formato 24h
+    hour12: false,
   });
 };
 
