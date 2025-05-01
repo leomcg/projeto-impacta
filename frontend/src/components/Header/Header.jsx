@@ -34,6 +34,7 @@ const Header = ({ user, onPostCreated }) => {
                 onPostCreated(newPost);
                 setShowModal(false);
               }}
+              isEdit={false}
             />
             <button
               className="close-button"

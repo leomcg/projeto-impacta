@@ -128,7 +128,7 @@ const updatePost = async (req, res, next) => {
   if (validateRequest(req, next)) return;
 
   const postId = req.params.pid;
-  const { title, description } = req.body;
+  const { title, description, image } = req.body;
 
   const postRef = db.collection("posts").doc(postId);
 
@@ -139,14 +139,19 @@ const updatePost = async (req, res, next) => {
       return next(new HttpError("Post não encontrado", 404));
     }
 
-    await postRef.update({
-      title,
-      description,
-      updatedAt: Timestamp.now(),
-      createdString: `Editado em ${createDate()}`,
-    });
+    const updatedFields = {};
+    if (title !== undefined) updatedFields.title = title;
+    if (description !== undefined) updatedFields.description = description;
+    if (image !== undefined && image !== "") updatedFields.image = image;
 
-    res.status(200).json({ post: { id: doc.id, title, description } });
+    updatedFields.updatedAt = Timestamp.now();
+    updatedFields.createdString = `Editado em ${createDate()}`;
+
+    await postRef.update(updatedFields);
+
+    const updatedDoc = await postRef.get();
+
+    res.status(200).json({ post: { id: updatedDoc.id, ...updatedDoc.data() } });
   } catch (err) {
     return handleFirestoreError(
       err,

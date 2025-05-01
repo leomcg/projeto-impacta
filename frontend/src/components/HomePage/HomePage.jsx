@@ -18,7 +18,11 @@ const HomePage = () => {
   }, []);
 
   const handlePostCreated = (newPost) => {
-    setPosts((prevPosts) => [newPost, ...prevPosts]);
+    setPosts((prevPosts) => {
+      const filteredPosts = prevPosts.filter((post) => post.id !== newPost.id);
+
+      return [newPost, ...filteredPosts];
+    });
   };
 
   const handlePostDeleted = (postId) => {
@@ -53,6 +57,14 @@ const HomePage = () => {
           <UserList users={users} onUserClick={handleUserClick} />
         </div>
         <div className="post-list-container container">
+          {selectedUser && (
+            <button
+              className="secondary-button button back-button"
+              onClick={handleBackToAllPosts}
+            >
+              Voltar para todos os posts
+            </button>
+          )}
           <h2 className="subtitle">
             {selectedUser
               ? posts.length > 0
@@ -60,15 +72,11 @@ const HomePage = () => {
                 : `${selectedUser} ainda não possui posts`
               : "Posts"}
           </h2>
-          {selectedUser && (
-            <button
-              className="button back-button"
-              onClick={handleBackToAllPosts}
-            >
-              Voltar para todos os posts
-            </button>
-          )}
-          <PostList posts={posts} onPostDeleted={handlePostDeleted} />
+          <PostList
+            posts={posts}
+            onPostDeleted={handlePostDeleted}
+            onPostCreated={handlePostCreated}
+          />
         </div>
       </div>
     </div>

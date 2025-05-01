@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import api from "../../api/api";
 import "./NewPostForm.css";
 import { useNavigate } from "react-router-dom";
 
-const NewPostForm = ({ onPostCreated }) => {
+const NewPostForm = ({ onPostCreated, isEdit, postData }) => {
   const navigate = useNavigate();
 
   const [title, setTitle] = useState("");
@@ -13,8 +13,18 @@ const NewPostForm = ({ onPostCreated }) => {
   const user = localStorage.getItem("userName");
   const userId = localStorage.getItem("userId");
 
+  // Preencher os campos quando for edição
+  useEffect(() => {
+    if (isEdit && postData) {
+      setTitle(postData.title || "");
+      setDescription(postData.description || "");
+      setImageUrl(postData.image || "");
+    }
+  }, [isEdit, postData]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     if (!title || description.length < 5) {
       alert(
         "Título é obrigatório e a descrição deve ter pelo menos 5 caracteres."
@@ -22,30 +32,49 @@ const NewPostForm = ({ onPostCreated }) => {
       return;
     }
 
-    try {
-      const response = await api.post("/posts", {
-        title,
-        description,
-        user,
-        image: imageUrl,
-        userId,
-      });
-      const newPost = response.data.post; // Get the new post from response
+    if (!isEdit) {
+      try {
+        const response = await api.post("/posts", {
+          title,
+          description,
+          user,
+          image: imageUrl,
+          userId,
+        });
 
-      setTitle("");
-      setDescription("");
+        setHomePagePosts(response.data.post);
+      } catch (error) {
+        console.error("Erro ao criar post:", error);
+        alert("Erro ao criar post, tente novamente.");
+      }
+    } else {
+      try {
+        const response = await api.patch(`/posts/${postData.id}`, {
+          title,
+          description,
+          image: imageUrl,
+        });
 
-      onPostCreated(newPost); // Update home page with the new post
-      navigate("/home", { replace: true });
-    } catch (error) {
-      console.error("Erro ao criar post:", error);
-      alert("Erro ao criar post, tente novamente.");
+        setHomePagePosts(response.data.post);
+      } catch (error) {
+        console.error("Erro ao editar post:", error);
+        alert("Erro ao editar post, tente novamente.");
+      }
     }
+  };
+
+  const setHomePagePosts = (newPost) => {
+    setTitle("");
+    setDescription("");
+    setImageUrl("");
+
+    onPostCreated(newPost);
+    navigate("/home", { replace: true });
   };
 
   return (
     <>
-      <h2 className="subtitle">Criar Novo Post</h2>
+      <h2 className="subtitle">{isEdit ? "Editar" : "Criar Novo"} Post</h2>
       <form onSubmit={handleSubmit}>
         <input
           className="input"
@@ -57,7 +86,7 @@ const NewPostForm = ({ onPostCreated }) => {
         <input
           className="input"
           type="text"
-          placeholder="URL da imagem"
+          placeholder="URL da imagem*"
           value={imageUrl}
           onChange={(e) => setImageUrl(e.target.value)}
         />
@@ -68,7 +97,7 @@ const NewPostForm = ({ onPostCreated }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
         <button className="button" type="submit">
-          Criar Post
+          {isEdit ? "Editar" : "Criar"} Post
         </button>
       </form>
     </>

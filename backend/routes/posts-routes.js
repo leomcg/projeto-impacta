@@ -20,13 +20,21 @@ router.get("/user/:uid", getPostsByUserId);
 
 router.post(
   "/",
-  [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
+  [
+    check("title").not().isEmpty(),
+    check("image").not().isEmpty(),
+    check("description").isLength({ min: 5 }),
+  ],
   createPost
 );
 
 router.patch(
   "/:pid",
-  [check("title").not().isEmpty(), check("description").isLength({ min: 5 })],
+  [
+    check("title").not().isEmpty(),
+    check("image").not().isEmpty(),
+    check("description").isLength({ min: 5 }),
+  ],
   updatePost
 );
 
